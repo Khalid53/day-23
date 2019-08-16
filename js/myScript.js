@@ -1,105 +1,117 @@
- /*
- Syntax: $('selector').event(action)
-selector:
-html element
-html tag
-id
-class
-attribute
-value of attribute
 
-JavaScript Object:
-Defenation:
-var khalid = {
-	name : 'Abdul Khalek', ------------------Property
-	add : function(){------------------------Method
-		document.write('Hello Add');
-	} 
-};
-Calling:
-khalid.add();
-
-
- */
-// var khalid = {
-// 	name : 'Abdul Khalek',
-// 	add : function(){
-// 		document.write('Hello Add');
-// 	} 
-// };
-// khalid.add();
-/*$('h1').html(function() {
-	$('h1').css({
-		'color' : 'red',
-		'font-size' : '36px',
-		'background-color' : 'green',
-
-	});
-} );*/
-	// var scrollDivPosition = $('#scrollDiv').position();
-	// alert(scrollDivPosition.top); --------------------------------------for mejerment scroll position
-
-
-	$(window).scroll( function () {
-		//alert('test');
-		var windowScrollPosition = $(window).scrollTop();
-		var stickyDiv = $('#stickyDiv').position();
-		// $('#p1').text(windowScrollPosition);
-		// $('#p2').text(stickyDiv.top);
-		if (windowScrollPosition>=stickyDiv.top) {
-			$('#stickyDiv').css({
-				'position' : 'fixed',
-				'top' : '0px',
-
-			});
-		} else {
-			$('#stickyDiv').css({
-				 
-			});	
-		}
-
-	});
-
-
-
-	var firstScrollPosition = 0;
- $('#scrollDiv').scroll( function() {
- 	//alert('test');
- 	//$('#h2').css('display', 'block').fadeOut(1000); for checking scroll event
- 	var scrollPosition = $('#scrollDiv').scrollTop();
- 	if (scrollPosition>firstScrollPosition){
- 		$('#h2').text('Your are scrolling down');
- 	} else {
- 		$('#h2').text('Your are scrolling up');
- 	}
- 	firstScrollPosition = scrollPosition;
-
- });
-
-
-
-
-$('#firstName').keyup( function(){
+function firstNameCheck(){
 	var firstName = $('#firstName').val();
-	$('#res1').text(firstName);
-} );
+	var reg = /^[a-zA-Z -.]{2,20}$/;
+	if (reg.test(firstName)) {
+	$('#firstNameError').text(' ');
+	} else {
+	$('#firstNameError').text('First name should be 2 to 20 charecter');
+	}
+}
 
-$('#lastName').keyup( function() {
-	var lastName = $('#lastName').val();
-	$('#res2').text(lastName);
+$('#firstName').keyup( function (){
+	firstNameCheck();
 });
-$('#lastName').blur( function() {
-	var firstName = $('#firstName').val();
+
+function lastNameCheck(){
 	var lastName = $('#lastName').val();
-	$('#res3').text(firstName+' '+lastName);
+	var reg = /^[a-zA-Z -.]{2,20}$/;
+	if (reg.test(lastName)) {
+	$('#lastNameError').text(' ');
+	} else {
+	$('#lastNameError').text('Last name should be 2 to 20 charecter');
+	}
+}
+
+$('#lastName').keyup( function (){
+	lastNameCheck();
+});
+
+function emailAddressCheck(){
+	var emailAddress = $('#emailAddress').val();
+	var regEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,3})+$/;
+	if (regEmail.test(emailAddress)) {
+	$('#emailError').text(' ');
+	} else {
+	$('#emailError').text('Email address is invalid');
+	}
+}
+
+$('#emailAddress').keyup( function (){
+	emailAddressCheck();
+});
+function checkPassword(){
+	var password = $('#password').val();
+	var reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+	if (reg.test(password)) {
+	$('#passwordError').text(' ');
+	} else {
+	$('#passwordError').text('Password must have 1 uppercase and lowercase letter, 1 number, 1 sepcial charecter like !@#$%^&* etc.');
+	}
+}
+
+$('#password').blur( function (){
+	checkPassword();
+});
+$('#password').keyup( function (){
+	$('#passwordError').text(' ');
+});
+$('#password').click( function (){
+	$('#passwordError').text('Password must have 1 uppercase and lowercase letter, 1 number, 1 sepcial charecter like !@#$%^&* etc.');
+});
+function checkConfirmPassword(){
+	var confirmPassword = $('#confirmPassword').val();
+	var password = $('#password').val();
+	if (password == confirmPassword) {
+	$('#confirmPasswordError').text(' ');
+	} else {
+	$('#confirmPasswordError').text('Password and Confirm Password should be same.');
+	}
+}
+
+
+$('#confirmPassword').click( function (){
+	$('#confirmPasswordError').text('Password and Confirm Password should be same.');
+});
+
+$('#confirmPassword').keyup( function (){
+	$('#confirmPasswordError').text(' ');
+});
+
+$('#confirmPassword').blur( function (){
+	checkConfirmPassword();
 });
 
 
 
 
- // $('#btn').click( function (){
-// 	var firstName = $('#firstName').val();
-// 	var lastName = $('#lastName').val();
-// 	var fullName = firstName+' '+lastName;
-// 	$('#fullName').val(fullName);
-// } );
+
+
+
+
+
+
+
+
+
+
+
+
+$(window).scroll( function () {
+	var windowScrollPosition = $(window).scrollTop();
+	//alert(windowScrollPosition);
+	var menuPosition = $('#menuPosition').position();
+	 //alert(menuPosition.left);
+	if (windowScrollPosition >= menuPosition.top){
+		$('#menuUl').css({
+			'position'   	: 'fixed',
+			'top' 	    	: '0px',
+			'width'     	: '90%',
+		});
+	} else {
+		$('#menuUl').css({
+			'position'    : 'relative',
+			'top'         : '0px',
+		});
+	}
+});
