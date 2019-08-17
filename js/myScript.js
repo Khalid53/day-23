@@ -4,8 +4,10 @@ function firstNameCheck(){
 	var reg = /^[a-zA-Z -.]{2,20}$/;
 	if (reg.test(firstName)) {
 	$('#firstNameError').text(' ');
+		return true;
 	} else {
 	$('#firstNameError').text('First name should be 2 to 20 charecter');
+		return false;
 	}
 }
 
@@ -18,8 +20,10 @@ function lastNameCheck(){
 	var reg = /^[a-zA-Z -.]{2,20}$/;
 	if (reg.test(lastName)) {
 	$('#lastNameError').text(' ');
+	return true;
 	} else {
 	$('#lastNameError').text('Last name should be 2 to 20 charecter');
+		return false;
 	}
 }
 
@@ -32,8 +36,10 @@ function emailAddressCheck(){
 	var regEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,3})+$/;
 	if (regEmail.test(emailAddress)) {
 	$('#emailError').text(' ');
+		return true;
 	} else {
 	$('#emailError').text('Email address is invalid');
+		return false;
 	}
 }
 
@@ -45,8 +51,10 @@ function checkPassword(){
 	var reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 	if (reg.test(password)) {
 	$('#passwordError').text(' ');
+		return true;
 	} else {
 	$('#passwordError').text('Password must have 1 uppercase and lowercase letter, 1 number, 1 sepcial charecter like !@#$%^&* etc.');
+		return false;
 	}
 }
 
@@ -64,8 +72,10 @@ function checkConfirmPassword(){
 	var password = $('#password').val();
 	if (password == confirmPassword) {
 	$('#confirmPasswordError').text(' ');
+		return true;
 	} else {
 	$('#confirmPasswordError').text('Password and Confirm Password should be same.');
+		return false;
 	}
 }
 
@@ -95,8 +105,10 @@ function checkGenderInfo(){
 	var genderInfo= $('input[type="radio"]:checked').val();
 	if(genderInfo == 'male' || genderInfo == "female") {
 		$('#genderError').text(' ');
+		return true;
 	} else {
 		$('#genderError').text('Please give your gender info!');
+		return false;
 	}
 }
 
@@ -108,13 +120,19 @@ function checkDistrictName(){
 	var districtValue = $('#district').val();
 	if (districtValue == ' ') {
 		$('#districtError').text('Please give us your district info!');
+		return false;
 	} else {
 		$('#districtError').text(' ');
+		return true;
 	}
 }
 
 $('#form').submit( function() {
-	return true;
+	if(firstNameCheck() == true && lastNameCheck() == true && emailAddressCheck() == true && checkPassword() == true && checkConfirmPassword() == true && checkGenderInfo() == true && checkDistrictName() == true ) {
+		return true;
+	} else {
+		return false;
+	}
 });
 
 
