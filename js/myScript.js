@@ -82,6 +82,40 @@ $('#confirmPassword').blur( function (){
 	checkConfirmPassword();
 });
 
+$('#showHide').click( function() {
+	var attrValue = $('#password').attr('type');
+	if(attrValue == 'password'){
+		$('#password').attr('type', 'text');
+	} else {
+		$('#password').attr('type', 'password');
+	}
+});
+
+function checkGenderInfo(){
+	var genderInfo= $('input[type="radio"]:checked').val();
+	if(genderInfo == 'male' || genderInfo == "female") {
+		$('#genderError').text(' ');
+	} else {
+		$('#genderError').text('Please give your gender info!');
+	}
+}
+
+// $('#btn').click( function() {
+// 	checkGenderInfo()
+// });
+
+function checkDistrictName(){
+	var districtValue = $('#district').val();
+	if (districtValue == ' ') {
+		$('#districtError').text('Please give us your district info!');
+	} else {
+		$('#districtError').text(' ');
+	}
+}
+
+$('#form').submit( function() {
+	return true;
+});
 
 
 

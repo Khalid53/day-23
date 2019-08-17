@@ -35,7 +35,7 @@
 			<div class="row">
 				<div class="col-3 content-height">Side Bar</div>
 				<div class="col-6 content-height">
-					<form>
+					<form action="" method="POST" id="form">
 						<table>
 							<tr>
 								<td>First Name</td>
@@ -84,8 +84,8 @@
 							<tr>
 								<td>District Name</td>
 								<td>
-									<select>
-										<option>---Select District Name----</option>
+									<select id="district">
+										<option value=" ">---Select District Name----</option>
 										<option value="Dhaka">Dhaka</option>
 										<option value="Dinajpur">Dinajpur</option>
 										<option value="Rajshahi">Rajshahi</option>
@@ -96,6 +96,7 @@
 										<option value="Kumilla">Kumilla</option>
 										<option value="Gazipur">Gazipur</option>
 									</select>
+									<span id="districtError"></span>
 								</td>
 							</tr>
 							<tr>
